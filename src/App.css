@@ -1,5 +1,115 @@
 .App {
   text-align: center;
+  background-color: #E5E5E5;
+ 
+}
+
+.banner1{
+  width: 100%;
+}
+
+.lateral .card{
+  width: 98%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  -webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px
+}
+
+.fcont{
+  padding: 0px !important;
+}
+
+
+.banner-container{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.filters{
+  text-align: left;
+}
+
+.filters li{
+  border:0px
+}
+
+.products-list{
+  width:100%;
+  background-color: #FFFFFF;
+} 
+
+.products{
+  list-style: none;
+  padding:0px;
+  padding-left: 1em;
+}
+
+.logo-brand{
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
+  margin-left: 10px;
+
+}
+
+.brand-logo-c{
+  float: left;
+}
+
+.product-image{
+  margin-top: 15px!important;
+}
+
+.brand-title{
+  float: left;
+  padding-top: 15px;
+  padding-left: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.products li {
+  float: left;
+  width:33%!important;
+  min-height: 400px;
+}
+
+.products .img-thumbnail{
+  padding:0px
+}
+
+.hide_login{
+  display:none
+}
+
+.noresult-label {
+  margin-left: 15px!important;
+  margin-right: 15px!important;
+}
+
+
+.actions-bt .btn{
+  width:100%
+}
+
+.selected{
+  font-weight: bold; 
+}
+
+.item{color:#48453d; margin-top:30px; overflow:hidden;}
+.item-content-block{padding:20px; border-top:2px solid #f6f6f2; background-color:#FFF; display:block;}
+.tags a{background-color:#F2F2F2; padding:10px; color:#6C6C6C; display:inline-block; font-size:11px; text-transform:uppercase; line-height:11px; border-radius:2px; margin-bottom:5px; margin-right:2px; text-decoration:none;}
+.tags a:hover{background-color:#dfdfdf;}
+.tags a{
+  -webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
 }
 
 .App-logo {
@@ -13,6 +123,7 @@
   }
 }
 
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -23,6 +134,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
 
 .App-link {
   color: #61dafb;
