@@ -1,11 +1,16 @@
 import React, { Component,useState, useEffect,Fragment  } from 'react'
 import { Form, Grid, Image, ItemMeta, Transition } from 'semantic-ui-react'
-import { Slider } from "react-semantic-ui-range";
 import banner from './images/banner.jpg';
 import axios from 'axios';
 import './App.css'; 
 
 import { Typeahead } from 'react-bootstrap-typeahead'; 
+
+//importar componentes
+
+import Panel from './components/panel'
+import Filtro from './components/filtro'
+import ProductList from './components/productList'
 
 
 function App() {
@@ -18,19 +23,6 @@ const [loadingActive, showLoading] = useState(false)
 
 const [isLoading, setIsLoading] = useState(false);
 const [options, setOptions] = useState([]);
-
-const settings = {
-  start: [2,4],
-  min: 0,
-  max: 10000,
-  step: 10,
-  onChange: value => {
-    setFilter({...filter, duration:value});
-    console.log(filter) 
-
-    filterProducts({...filter, duration:value})
-  }
-};
 
 const handleSearch = (query) => {
   setIsLoading(true);
@@ -207,77 +199,10 @@ const filterCategory = (data) => {
     <div className="row">
       <div className="col-md-4 col-xs-12 lateral">
 
-              <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Aniam Store</h4>
-               <br/>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-                <button>Ver instagram</button>
-              
-              
-                <button>WhatsApp</button>
-              
-              </div>
-            </div>
+             <Panel/>
 
 
-            <div class="card filters">
-              <div class="card-body ">
-                <h4 class="card-title pull-left">Filtros</h4> <button className="btn btn-success pull-right" onClick={clear_filter.bind()}>Limpiar</button>
-               <hr/>
-               <h4 className="card-title">Precio</h4>
-
-               <Slider multiple value={filter.duration} color="red" settings={settings} />
-
-               <div>
-              <b>Min: {filter && filter.duration[0]}</b>
-                <b>    -   </b>
-              <b>Max: {filter && filter.duration[1]}</b>
-
-               </div>
-
-
-            <h4 className="card-title">Marca</h4>
-
-              <ul class="list-group list-group-flush">
-               
-               {brands && brands.map((item,index)=>{
-
-                let cssActive = false   
-
-
-                if(item.id ===  filter.brand){
-                    cssActive = true;
-                  }else{
-                     cssActive = false;  
-                  }
-               
-              return( <li class={'list-group-item ' +(cssActive ? "selected" : '')} value={item.id} onClick={()=>{filterBrand(item)}}>{item.name}</li>)
-              })}
-              </ul>
-              
-
-              <h4 className="card-title">Catégoria</h4>
-
-                <ul class="list-group list-group-flush">
-                {categories && categories.map((item,index)=>{
-
-                  let cssActive = false   
-
-
-                if(item.id ===  filter.category){
-                    cssActive = true;
-                  }else{
-                     cssActive = false;  
-                  }
-                              
-                              return( <li class={'list-group-item ' +(cssActive ? "selected" : '')} value={item.id} onClick={()=>{filterCategory(item)}}>{item.name}</li>)
-                              })}
-                </ul>
-              </div>
-            </div>
-
+            <Filtro categories={categories} brands={brands} setFilter={setFilter} filter={filter} filterProducts={filterProducts} clear_filter={clear_filter} filterBrand={filterBrand} filterCategory={filterCategory}/>
         
        </div>
 
@@ -285,67 +210,7 @@ const filterCategory = (data) => {
 
           <div className="card">
 
-          <div className={"loading "+(loadingActive ? "" : 'hide_login')}>Cargando lista ...</div>
-
-            <ul class="products">
-               {products && products.map((item, index) => {
-
-                 return(
-                  <li>
-                      <div class="card">
-                      <div class="card-body">
-                        <div class="brand-logo-c">
-                            <img src="https://i.pravatar.cc/300" className="logo-brand"/>
-
-                        </div>
-                        <div class="brand-title">
-                                  {item.brand_name}
-                                  </div>
-
-                         <div className="clearfix"></div>
-
-                        <div className="product-image">
-                        <img src="https://i.pravatar.cc/300" className="img-thumbnail"/>
-                        </div>
-
-
-                        <h4 className="product-title">{item.name}</h4>
-
-                        <h2 className="product-price">$ {item.price}</h2>
-
-                        <div className="product-tags">
-                        <div class="item-content-block tags">
-    	<a href="#">lorem</a> <a href="#">loremipse</a> <a href="#">Esrite</a> <a href="#">remip</a> <a href="#">serte</a> <a href="#">quiaxms</a> <a href="#">loremipse</a> <a href="#">Esrite</a>
-    </div>
-                        </div>
-
-
-                        <div className="actions actions-bt">
-                          <button className="btn btn-success" type="button">Add to Cart</button>
-                        </div>
-
-
-
-                        </div>
-                        
-
-
-
-                      </div>
-
-                  </li>
-                 
-               ) })} 
-            </ul>    
-
-            {products && products.length === 0 ? (
-              <div class="noresult-label alert alert-secondary" role="alert">
-                No se encontraron resultados.
-              </div>
-            ):(
-              <></>
-            )}
-
+              <ProductList products={products} loading={loadingActive}/>
 
           </div>
 
